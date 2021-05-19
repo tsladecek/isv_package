@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import pandas as pd
 
-from app.scripts.predict import predict
+from app.scripts.predict import Predict
 
 
 if __name__ == "__main__":
@@ -12,10 +12,18 @@ if __name__ == "__main__":
                         type=str, choices=["loss", "gain"])
     parser.add_argument("-o", "--output", required=False, help="where the output tsv will be saved",
                         type=str, default="./isv_predictions.tsv")
+    parser.add_argument("-p", "--proba", required=False, type=str, choices=["true", "false"],
+                        default="true", help="Return probabilities")
+    parser.add_argument("-sv", "--shapvalues", type=str, default="false", choices=["true", "false"],
+                        help="Calculate SHAP Values")
 
     args = parser.parse_args()
 
-    y = predict(cnv_type=args.cnv_type,
+    p = Predict(cnv_type=args.cnv_type,
                 data_path=args.input)
 
-    pd.DataFrame({"ISV": y}).to_csv(args.output, sep='\t')
+    yhat = p.predict(proba=args.proba)
+    sv = p.shap_values().values
+
+    print(sv)
+    # pd.DataFrame({"ISV": yhat}).to_csv(args.output, sep='\t')
