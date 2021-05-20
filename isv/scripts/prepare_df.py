@@ -1,19 +1,19 @@
 import pandas as pd
 from sklearn.preprocessing import RobustScaler
 
-from app.scripts.constants import LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
-from app.config import settings
+from isv.scripts.constants import LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
+from isv.config import settings
 
 
-def prepare(cnv_type,
-            data_path):
+def prepare(X, cnv_type, return_train=False):
     """
     Extract relevant attributes for training and return training dataset
     together with labels, and scale the dataset - do same for validation dataset
 
     :param cnv_type: type of the cnv == ["loss", "gain"]
-    :param data_path: path to the data to predict
-    :return X: transformed dataframe
+    :param X: pandas dataframe
+    :param return_train: specify if transformed train data should be returned
+    :return X: transformed dataframe if return_train is False. else tuple (X, X_train)
     """
 
     if cnv_type == 'loss':
@@ -23,19 +23,19 @@ def prepare(cnv_type,
 
     train_data_path = settings.data_dir + f'train_{cnv_type}.tsv.gz'
     X_train = pd.read_csv(train_data_path, compression='gzip', sep='\t')
-    X_any = pd.read_csv(data_path, compression='gzip', sep='\t')
 
     # Train
     X_train = X_train.loc[:, attributes]
 
-    # evaluated data data
-    X_any = X_any.loc[:, attributes]
+    # evaluated data
+    X_any = X.loc[:, attributes]
 
     # Scale
     scaler = RobustScaler()
-
-    scaler.fit(X_train)
-
+    X_train = scaler.fit_transform(X_train)
     X_any = scaler.transform(X_any)
+
+    if return_train:
+        return X_any, X_train
 
     return X_any

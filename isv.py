@@ -1,7 +1,9 @@
 from argparse import ArgumentParser
 import pandas as pd
+import sys
 
-from app.scripts.predict import Predict
+from isv import predict, shap_values
+from isv.scripts.constants import HUMAN_READABLE, LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
 
 
 if __name__ == "__main__":
@@ -19,11 +21,21 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    p = Predict(cnv_type=args.cnv_type,
-                data_path=args.input)
+    if 'tsv' not in args.input:
+        sys.exit("Input should be a tsv file")
 
-    yhat = p.predict(proba=args.proba)
-    sv = p.shap_values().values
+    if args.input.endswith('.gz'):
+        X_raw = pd.read_csv(args.input, sep='\t', compression='gzip')
+    elif args.input.endswith('.tsv'):
+        X_raw = pd.read_csv(args.input, sep='\t')
 
-    print(sv)
-    # pd.DataFrame({"ISV": yhat}).to_csv(args.output, sep='\t')
+    yhat = predict(X_raw, args.cnv_type, proba=(args.proba == "true"))
+    res = pd.DataFrame({"ISV": yhat})
+
+    if args.shapvalues == "true":
+        attributes = [LOSS_ATTRIBUTES, GAIN_ATTRIBUTES][(args.cnv_type == 'gain') * 1]
+        hr_attributes = [HUMAN_READABLE[i] for i in attributes]
+        sv = shap_values(X_raw, args.cnv_type)
+        res = pd.concat([res, pd.DataFrame(sv.values, columns=hr_attributes)], axis=1)
+
+    res.to_csv(args.output, sep='\t')
