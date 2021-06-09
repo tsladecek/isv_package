@@ -16,7 +16,7 @@ long_description = (CURRENT_DIR / 'README.md').read_text(encoding='utf-8')
 # Setting up
 setup(
     name="isv",
-    version=VERSION,
+    version=f"{VERSION}",
     author="Tomas Sladecek",
     author_email="tomas.sladecek@geneton.sk",
     description='Automated Interpretation of Structural Copy Number Variants',
