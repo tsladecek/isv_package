@@ -2,7 +2,8 @@ from argparse import ArgumentParser
 import pandas as pd
 import sys
 
-from isv import predict, shap_values
+from isv.predict import predict
+from isv.shap_vals import shap_values
 from isv.scripts.constants import HUMAN_READABLE, LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
 
 

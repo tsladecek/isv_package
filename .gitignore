@@ -1,6 +1,11 @@
 venv
 .idea/
 
+build/
+dist/
+
 *pycache*
 
 isv_predictions.tsv
+
+*egg*
