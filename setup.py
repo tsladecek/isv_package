@@ -6,6 +6,7 @@ https://github.com/pypa/sampleproject
 
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
+import os
 import pathlib
 
 CURRENT_DIR = pathlib.Path(__file__).parent.resolve()
@@ -13,10 +14,12 @@ CURRENT_DIR = pathlib.Path(__file__).parent.resolve()
 # Get the long description from the README file
 long_description = (CURRENT_DIR / 'README.md').read_text(encoding='utf-8')
 
+VERSION = open(os.path.join(CURRENT_DIR, 'VERSION')).read().strip()
+
 # Setting up
 setup(
     name="isv-slado",
-    version='0.0.9',
+    version=VERSION,
     author="Tomas Sladecek",
     author_email="tomas.sladecek@geneton.sk",
     description='Automated Interpretation of Structural Copy Number Variants',
