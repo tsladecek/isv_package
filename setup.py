@@ -14,7 +14,7 @@ CURRENT_DIR = pathlib.Path(__file__).parent.resolve()
 # Get the long description from the README file
 long_description = (CURRENT_DIR / 'README.md').read_text(encoding='utf-8')
 
-VERSION = open(os.path.join(CURRENT_DIR, 'VERSION')).read().strip()
+# VERSION = open(os.path.join(CURRENT_DIR, 'VERSION')).read().strip()
 
 # Setting up
 setup(
