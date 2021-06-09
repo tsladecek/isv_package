@@ -18,7 +18,7 @@ VERSION = open(os.path.join(CURRENT_DIR, 'VERSION')).read().strip()
 
 # Setting up
 setup(
-    name="isv-slado",
+    name="isv",
     version=VERSION,
     author="Tomas Sladecek",
     author_email="tomas.sladecek@geneton.sk",
