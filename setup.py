@@ -16,14 +16,14 @@ long_description = (CURRENT_DIR / 'README.md').read_text(encoding='utf-8')
 # Setting up
 setup(
     name="isv",
-    version=VERSION,
+    version="VERSION",
     author="Tomas Sladecek",
     author_email="tomas.sladecek@geneton.sk",
     description='Automated Interpretation of Structural Copy Number Variants',
     long_description_content_type="text/markdown",
     long_description=long_description,
-    package_dir={'': 'isv'},
-    packages=find_packages(where='isv'),
+    packages=find_packages(),
+    include_package_data=True,
     python_requires='>=3.6, <4',
     install_requires=["numpy>=1.20.0",
                       "xgboost>=1.4.0",
