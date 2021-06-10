@@ -1,2 +1,2 @@
-include isv/data/
-include isv/models/
+graft isv/data/
+graft isv/models/
