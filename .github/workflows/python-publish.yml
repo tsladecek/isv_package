@@ -37,8 +37,6 @@ jobs:
         VERSION=${{ steps.previoustag.outputs.tag }}
         echo $VERSION
         sed -i "s/VERSION/$VERSION/g" setup.py
-    - name: check file
-      run: cat setup.py
     - name: Build package
       run: python -m build
     - name: Publish package
