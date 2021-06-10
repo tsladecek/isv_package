@@ -23,6 +23,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages(),
+    include_package_data=True,
     python_requires='>=3.6, <4',
     install_requires=["numpy>=1.20.0",
                       "xgboost>=1.4.0",
