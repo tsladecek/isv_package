@@ -42,7 +42,7 @@ about:
   license_file: https://raw.githubusercontent.com/tsladecek/isv_package/master/LICENSE.txt
   summary: "Automated Interpretation of Structural Copy Number Variants"
   doc_url:
-  dev_url:
+  dev_url: https://github.com/tsladecek/isv_package
 
 extra:
   recipe-maintainers:
