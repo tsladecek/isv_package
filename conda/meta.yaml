@@ -1,0 +1,49 @@
+{% set name = "isv" %}
+{% set version = "VERSION" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: e563b19d356b71960bef100bb0887dfb877c5a832e69805ee7c32c0622b464e9
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - numpy
+    - pandas
+    - pip
+    - python
+    - shap
+    - sklearn-json
+    - xgboost
+  run:
+    - numpy
+    - pandas
+    - python
+    - shap
+    - sklearn-json
+    - xgboost
+
+test:
+  imports:
+    - isv
+    - isv.scripts
+
+about:
+  home: The package home page
+  license: UNKNOWN
+  license_family: OTHER
+  license_file: 
+  summary: "Automated Interpretation of Structural Copy Number Variants"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - tsladecek

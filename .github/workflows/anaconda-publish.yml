@@ -1,0 +1,29 @@
+name: publish_conda
+
+on: [push]
+  # release:
+  #   types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Previous tag
+      id: previoustag
+      uses: WyriHaximus/github-action-get-previous-tag@v1
+      with:
+        fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
+    - name: Update Version
+      run: |
+        VERSION=${{ steps.previoustag.outputs.tag }}
+        echo $VERSION
+        sed -i "s/VERSION/$VERSION/g" conda/meta.yml
+    - name: check meta
+      run: cat conda/meta.yml
+    # - uses: actions/checkout@v2
+    # - name: publish-to-conda
+    #   uses: fcakyon/conda-publish-action@v1.3
+    #   with:
+    #     subdir: 'conda'
+    #     anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+    #     platforms: 'win osx linux'
