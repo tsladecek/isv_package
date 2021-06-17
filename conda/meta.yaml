@@ -37,12 +37,12 @@ test:
 
 about:
   home: The package home page
-  license: UNKNOWN
+  license: Free for non-commercial use
   license_family: OTHER
-  license_file: 
+  license_file: https://raw.githubusercontent.com/tsladecek/isv_package/master/LICENSE.txt
   summary: "Automated Interpretation of Structural Copy Number Variants"
-  doc_url: 
-  dev_url: 
+  doc_url:
+  dev_url:
 
 extra:
   recipe-maintainers:
