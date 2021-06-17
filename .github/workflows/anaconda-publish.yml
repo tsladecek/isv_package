@@ -8,6 +8,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Get Previous tag
       id: previoustag
       uses: WyriHaximus/github-action-get-previous-tag@v1
@@ -20,7 +23,6 @@ jobs:
         sed -i "s/VERSION/$VERSION/g" conda/meta.yml
     - name: check meta
       run: cat conda/meta.yml
-    # - uses: actions/checkout@v2
     # - name: publish-to-conda
     #   uses: fcakyon/conda-publish-action@v1.3
     #   with:
