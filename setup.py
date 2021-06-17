@@ -25,12 +25,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.6, <4',
-    install_requires=["numpy>=1.20.0",
-                      "xgboost>=1.4.0",
-                      "pandas>=1.2.0",
-                      "shap>=0.39.0",
-                      "sklearn-json>=0.1.0"
-                      ],
+    install_requires=["numpy", "xgboost", "pandas", "shap"],
     keywords=['python', 'machine learning', 'copy number variation'],
     license_files=("LICENSE.txt"),
     classifiers=[  # Optional
@@ -44,7 +39,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         
-        'License :: Free for non-commercial use'
+        'License :: Free for non-commercial use',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate you support Python 3. These classifiers are *not*
