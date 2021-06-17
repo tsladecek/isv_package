@@ -24,9 +24,9 @@ jobs:
         sed -i "s/VERSION/$VERSION/g" conda/meta.yaml
     - name: check meta
       run: cat conda/meta.yaml
-    # - name: publish-to-conda
-    #   uses: fcakyon/conda-publish-action@v1.3
-    #   with:
-    #     subdir: 'conda'
-    #     anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
-    #     platforms: 'win osx linux'
+     - name: publish-to-conda
+       uses: fcakyon/conda-publish-action@v1.3
+       with:
+         subdir: 'conda'
+         anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+         platforms: 'win osx linux'
