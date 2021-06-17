@@ -20,9 +20,9 @@ jobs:
       run: |
         VERSION=${{ steps.previoustag.outputs.tag }}
         echo $VERSION
-        sed -i "s/VERSION/$VERSION/g" conda/meta.yml
+        sed -i "s/VERSION/$VERSION/g" conda/meta.yaml
     - name: check meta
-      run: cat conda/meta.yml
+      run: cat conda/meta.yaml
     # - name: publish-to-conda
     #   uses: fcakyon/conda-publish-action@v1.3
     #   with:
