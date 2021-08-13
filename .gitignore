@@ -9,3 +9,6 @@ dist/
 isv_predictions.tsv
 
 *egg*
+
+examples/*out*
+isv/data/raw

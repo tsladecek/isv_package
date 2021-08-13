@@ -1,38 +1,28 @@
 # ISV package
 
-Python package for easy prediction of pathogenicity of annotated Copy Number Variants (CNVs)
-
-The package contains two functions:
-
-### 1. isv.predict(X_raw, cnv_type)
-- returns an array of probabilities
-
-### 2. shap_values(X_raw, cnv_type)
-- calculates shap values for given CNVs
+Python package for easy prediction of pathogenicity Copy Number Variants (CNVs)
 
 ---
-Both functions assume that input dataframes contain counts of following genomic elements:
-```     
-[
-    'gencode_genes',
-    'protein_coding',
-    'pseudogenes',
-    'mirna',
-    'lncrna',
-    'rrna',
-    'snrna',
-    'morbid_genes',
-    'disease_associated_genes',
-    'hi_genes',  # ONLY FOR LOSSES
-    'regions_HI',  # ONLY FOR LOSSES
-    'regions_TS',  # ONLY FOR GAINS
-    'regulatory',
-    'regulatory_enhancer',
-    'regulatory_open_chromatin_region',
-    'regulatory_promoter',
-    'regulatory_promoter_flanking_region',
-    'regulatory_ctcf_binding_site',
-    'regulatory_tf_binding_site',
-    'regulatory_curated'
-]
+## Requirements
+
 ```
+xgboost>=1.4.2
+shap>=0.39.0
+sklearn-json>=0.1.0
+numba>=0.53.1
+numpy>=1.20.3
+pandas>=1.2.4
+```
+---
+
+The package contains three functions:
+
+### 1. isv.annotate(cnvs)
+- annotates cnvs provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
+- Returns an annotated dataframe which can be used as an input to following two functions
+
+### 2. isv.predict(X_raw, cnv_type, proba)
+- returns an array of isv predictions
+
+### 3. shap_values(X_raw, cnv_type)
+- calculates shap values for given CNVs

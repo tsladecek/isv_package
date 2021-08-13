@@ -49,7 +49,6 @@ GAIN_ATTRIBUTES = [
 
 
 HUMAN_READABLE = {
-    'length': 'CNV Length',
     'gencode_genes': 'Overlapped Gencode Elements',
     'protein_coding': 'Protein Coding Genes',
     'morbid_genes': 'Morbid Genes',
@@ -60,7 +59,6 @@ HUMAN_READABLE = {
     'rrna': 'Ribosomal RNA',
     'snrna': 'Small nuclear RNA',
     'hi_genes': 'Haploinsufficient Genes',
-    'ts_genes': 'Triplosensitive Genes',
     'regions_HI': 'Haploinsufficient Regions',
     'regions_TS': 'Triplosensitive Regions',
     'regulatory': 'Regulatory Elements',
@@ -75,7 +73,6 @@ HUMAN_READABLE = {
 
 
 DESCRIPTIONS = {
-    'length' : 'Length of the candidate CNV in base-pairs',
     'gencode_genes': 'Number of Overlapped Gene Elements extracted from Gencode database',
     'protein_coding': 'Number of Protein Coding Genes (Gencode)',
     'morbid_genes': 'Number of Genes intolerant to an irregular number of copies (OMIM)',
@@ -86,7 +83,6 @@ DESCRIPTIONS = {
     'rrna': 'Number of Ribosomal RNA elements',
     'snrna': 'Number of Small nuclear RNA elements',
     'hi_genes': 'Number Haploinsufficient Genes (score = 3) (ClinGen)',
-    'ts_genes': 'Number of Triplosensitive Genes (score = 3) (ClinGen)',
     'regions_TS': 'Triplosensitive Regions (score = 3) (ClinGen)',
     'regions_HI': 'Haploinsufficient Regions (score = 3) (ClinGen)',
     'regulatory': 'Number of Regulatory Elements (NCBI Regulatory)',
