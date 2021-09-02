@@ -18,29 +18,27 @@ setup(
     name="isv",
     version="VERSION",
     author="Tomas Sladecek",
+    maintainer="Tomas Sladecek",
     author_email="tomas.sladecek@geneton.sk",
     description='Automated Interpretation of Structural Copy Number Variants',
     long_description_content_type="text/markdown",
     long_description=long_description,
+    url="https://github.com/tsladecek/isv_package",
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.6, <4',
-    install_requires=["numpy", "xgboost", "pandas", "shap", "sklearn-json"],
+    install_requires=["numpy", "xgboost", "pandas", "shap", "sklearn-json", "numba"],
     keywords=['python', 'machine learning', 'copy number variation'],
-    license_files=("LICENSE.txt"),
+    license_files="LICENSE.txt",
     classifiers=[  # Optional
         # How mature is this project? Common values are
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
         'Development Status :: 3 - Alpha',
-
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
-        
         'License :: Free for non-commercial use',
-
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate you support Python 3. These classifiers are *not*
         # checked by 'pip install'. See instead 'python_requires' below.

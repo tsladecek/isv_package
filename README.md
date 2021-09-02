@@ -12,7 +12,10 @@ sklearn-json>=0.1.0
 numba>=0.53.1
 numpy>=1.20.3
 pandas>=1.2.4
+numba>=0.53.1
 ```
+The package might work with older versions, however above specified versions are recommended.
+Make sure to install these packages before installing the `isv` package
 ---
 
 The package contains three functions:
@@ -24,5 +27,5 @@ The package contains three functions:
 ### 2. isv.predict(X_raw, cnv_type, proba)
 - returns an array of isv predictions
 
-### 3. shap_values(X_raw, cnv_type)
+### 3. isv.shap_values(X_raw, cnv_type)
 - calculates shap values for given CNVs

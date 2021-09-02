@@ -38,8 +38,7 @@ def get_el(arr, start: int, end: int):
     return arr[np.where((arr[:, 1] <= end) & (arr[:, 2] >= start))[0]]
 
 
-def annotate_cnv(chrom, start, end, gencode_genes, regulatory, hi_genes, hi_regions,
-                 ts_regions):
+def annotate_cnv(chrom, start, end, gencode_genes, regulatory, hi_genes, hits_regions):
     """Annotate a candidate CNV
 
     :param chrom: chromosome identifier, eg. "chr1"
@@ -53,25 +52,24 @@ def annotate_cnv(chrom, start, end, gencode_genes, regulatory, hi_genes, hi_regi
     :return: annotation
     """
     
-    overlapped_gencode_omim = get_el(gencode_genes[chrom], start, end)
+    overlapped_genes = get_el(gencode_genes[chrom], start, end)
     overlapped_regulatory = get_el(regulatory[chrom], start, end)
     overlapped_hi_genes = get_el(hi_genes[chrom], start, end)
-    overlapped_hi_regions = get_el(hi_regions[chrom], start, end)
-    overlapped_ts_regions = get_el(ts_regions[chrom], start, end)
-
+    overlapped_hits_regions = get_el(hits_regions[chrom], start, end)
+    
     return np.array([
-        len(overlapped_gencode_omim),  # gencode_genes
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["protein_coding"]),
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["pseudogene"]),
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["miRNA"]),
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["lncRNA"]),
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["rRNA"]),
-        np.sum(overlapped_gencode_omim[:, 3] == settings.gene_type_dict["snRNA"]),
-        np.sum(overlapped_gencode_omim[:, 4]),  # morbid genes
-        np.sum(overlapped_gencode_omim[:, 5]),  # disease associated genes
+        len(overlapped_genes),  # gencode_genes
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["protein_coding"]),
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["pseudogene"]),
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["miRNA"]),
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["lncRNA"]),
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["rRNA"]),
+        np.sum(overlapped_genes[:, 3] == settings.gene_type_dict["snRNA"]),
+        np.sum(overlapped_genes[:, 4]),  # morbid genes
+        np.sum(overlapped_genes[:, 5]),  # disease associated genes
         len(overlapped_hi_genes),
-        len(overlapped_hi_regions),
-        len(overlapped_ts_regions),
+        np.sum(overlapped_hits_regions[:, 3]),  # HI regions
+        np.sum(overlapped_hits_regions[:, 4]),  # TS regions
         len(overlapped_regulatory),  # all overlapped regulatory elements
         np.sum(overlapped_regulatory[:, 3] == settings.regulatory_type_dict["enhancer"]),
         np.sum(overlapped_regulatory[:, 3] == settings.regulatory_type_dict["open_chromatin_region"]),
@@ -110,8 +108,7 @@ def annotate(cnvs):
     gencode_genes = open_data(os.path.join(settings.data_dir, "preprocessed", "gencode_genes.json.gz"))
     regulatory = open_data(os.path.join(settings.data_dir, "preprocessed", "regulatory.json.gz"))
     hi_genes = open_data(os.path.join(settings.data_dir, "preprocessed", "hi_genes.json.gz"))
-    hi_regions = open_data(os.path.join(settings.data_dir, "preprocessed", "hi_regions.json.gz"))
-    ts_regions = open_data(os.path.join(settings.data_dir, "preprocessed", "ts_regions.json.gz"))
+    hits_regions = open_data(os.path.join(settings.data_dir, "preprocessed", "hits_regions.json.gz"))
     
     # annotate cnvs
     print("Annotating CNVs")
@@ -120,7 +117,7 @@ def annotate(cnvs):
     for i, cnv in cnvs.iterrows():
         annotated[i] = annotate_cnv(settings.chromosome_dict[cnv.chrom],
                                     cnv.start, cnv.end, gencode_genes,
-                                    regulatory, hi_genes, hi_regions, ts_regions)
+                                    regulatory, hi_genes, hits_regions)
     
     elapsed = round(time.time() - start, 9)
     print(f"Annotated in {elapsed} seconds")
