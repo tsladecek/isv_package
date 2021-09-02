@@ -100,6 +100,11 @@ def annotate(cnvs):
 
     cnvs.columns = ["chrom", "start", "end", "cnv_type"]
 
+    assert np.sum([i in ["DEL", "DUP"] for i in cnvs.cnv_type]) == len(cnvs), "cnv type has to be either DUP or DEL"
+
+    # Just in case something is wrong with indexes
+    cnvs.reset_index(inplace=True, drop=True)
+
     # Make sure that chromosomes are in the right format
     cnvs.chrom = [i if i.startswith("chr") else f"chr{i}" for i in cnvs.chrom]
 
@@ -122,4 +127,4 @@ def annotate(cnvs):
     elapsed = round(time.time() - start, 9)
     print(f"Annotated in {elapsed} seconds")
     
-    return pd.DataFrame(annotated, columns=settings.attributes)
+    return pd.concat([cnvs, pd.DataFrame(annotated, columns=settings.attributes)], axis=1)

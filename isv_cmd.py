@@ -1,14 +1,11 @@
-import argparse
 from argparse import ArgumentParser
 import numpy as np
 import pandas as pd
-import sys
 
 from isv.annotate import annotate
 from isv.predict import predict
 from isv.shap_vals import shap_values
-from isv.scripts.constants import HUMAN_READABLE, LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
-
+from isv import isv
 
 if __name__ == "__main__":
     parser = ArgumentParser("Interpretation of Structural Copy Number Variants")
@@ -28,47 +25,7 @@ if __name__ == "__main__":
     else:
         exit("Unknown File extension. Use '.tsv', '.bed' or '.csv'")
 
-    loss_indices = np.where(bed.iloc[:, 3] == "DEL")[0]
-    gain_indices = np.where(bed.iloc[:, 3] == "DUP")[0]
+    final = isv(cnvs=bed, proba=args.proba, shap=args.shapvalues)
 
-    assert len(loss_indices) + len(gain_indices) == len(bed),\
-        "All CNVs should have cnv type of either 'DUP' or 'DEL'"
-
-    annotated = annotate(bed)
-
-    final_predictions = np.empty(len(bed), dtype=[np.int8, np.float64][args.proba * 1])
-
-    print("Predicting")
-    if loss_indices.shape[0] > 0:
-        final_predictions[loss_indices] = predict(annotated.iloc[loss_indices], "loss", proba=args.proba)
-    if gain_indices.shape[0] > 0:
-        final_predictions[gain_indices] = predict(annotated.iloc[gain_indices], "gain", proba=args.proba)
-
-    bed["ISV"] = final_predictions
-
-    if args.shapvalues:
-        print("Calculating SHAP values")
-        res = []
-
-        if loss_indices.shape[0] > 0:
-            attributes = LOSS_ATTRIBUTES
-            hr_attributes = ['SHAP_' + HUMAN_READABLE[i].replace(' ', '_') for i in attributes]
-            sv = shap_values(annotated.iloc[loss_indices], "loss")
-            res.append(pd.DataFrame(sv.values, columns=hr_attributes))
-
-        if gain_indices.shape[0] > 0:
-            attributes = GAIN_ATTRIBUTES
-            hr_attributes = ['SHAP_' + HUMAN_READABLE[i].replace(' ', '_') for i in attributes]
-            sv = shap_values(annotated.iloc[gain_indices], "gain")
-            res.append(pd.DataFrame(sv.values, columns=hr_attributes))
-
-        res = pd.concat(res)
-
-        res.index = np.concatenate([loss_indices, gain_indices])
-
-        res = res.sort_index()
-        # Append to results
-        bed = pd.concat([bed, res], axis=1)
-
-    bed.to_csv(args.output, sep='\t', index=False)
+    final.to_csv(args.output, sep='\t', index=False)
     print(f"Results saved to {args.output}")
