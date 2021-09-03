@@ -39,6 +39,19 @@ And three main subfunction functions:
 ### 3. isv.shap_values(annotated_cnvs, cnv_type)
 - calculates shap values for given CNVs. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
+#### For example
+```
+from isv import isv
+
+
+cnvs = [
+    ["chr8", 100000, 500000, "DEL"],
+    ["chrX", 52000000, 55000000, "DUP"]
+] 
+
+results = isv(cnvs, proba=True, shap=True)
+```
+
 ---
 Can be also used as a command line tool. Make sure to:
 
@@ -62,3 +75,9 @@ File where results should be saved (as a tab-separated table)
 Optionally, use following flags:
 - **-p**: whether probabilities should be returned
 - **-sv**: whether shap values should be calculated
+
+#### For example
+
+```
+python isv_cmd.py -i examples/loss_gain_cnvs.bed -o examples/loss_gain_cnvs_out.bed -p -sv
+```
