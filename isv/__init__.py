@@ -19,6 +19,6 @@ def isv(cnvs, proba, shap):
     result = cnv_isv.predict(proba)
     if shap:
         temp = cnv_isv.shap()
-        result = pd.concat([result, temp.iloc[:, 4:]])
+        result = pd.concat([result, temp.iloc[:, 4:]], axis=1)
 
     return result

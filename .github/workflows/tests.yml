@@ -3,7 +3,7 @@ name: Basic Testing of package functionality
 on: push
 
 jobs:
-  deploy:
+  tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
