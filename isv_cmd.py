@@ -1,11 +1,7 @@
 from argparse import ArgumentParser
-import numpy as np
 import pandas as pd
-
-from isv.annotate import annotate
-from isv.predict import predict
-from isv.shap_vals import shap_values
 from isv import isv
+
 
 if __name__ == "__main__":
     parser = ArgumentParser("Interpretation of Structural Copy Number Variants")

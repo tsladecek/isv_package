@@ -1,37 +1,24 @@
 from .predict import predict
 from .shap_vals import shap_values
 from .annotate import annotate
+from .isv import ISV
 
-import numpy as np
 import pandas as pd
 
 
-def isv(cnvs, proba: bool = True, shap: bool = False):
-    """Annotate and Predict pathogenicity of CNVs
+def isv(cnvs, proba, shap):
+    """Predict pathogenicity, and optionally calculate shap values of CNVs with this simple wrapper class
 
     :param cnvs: a list, np.array or pandas dataframe with 4 columns representing chromosome (eg, chr3),
     cnv start (grch38), cnv end (grch38) and cnv_type (DUP or DEL)
-    :param proba: whether probabilities should be returned
-    :param shap: whether shap values should be calculated
-    :return: ISV output as a pandas dataframe
+    :param proba: whether probabilities should be calculated
+    :param shap: whether probabilities should be calculated
+    :return: pandas dataframe of results
     """
-    if isinstance(cnvs, list) or isinstance(cnvs, np.ndarray):
-        cnvs = pd.DataFrame(cnvs)
-    assert isinstance(cnvs, pd.core.frame.DataFrame), "Please supply input as either list, np.ndarray or pd.DataFrame"
-    assert cnvs.shape[1] == 4, "Input should have 4 columns: chromosome, start (grch38), end (grch38), cnv_type"
-
-    cnvs.columns = ["chromosome", "start", "end", "cnv_type"]
-
-    final = cnvs.copy()
-    annotated = annotate(cnvs)
-
-    # 1. Add predictions
-    final["ISV"] = predict(annotated, proba)
-
-    # 2. Add SHAP values
+    cnv_isv = ISV(cnvs)
+    result = cnv_isv.predict(proba)
     if shap:
-        svs = shap_values(annotated)
+        temp = cnv_isv.shap()
+        result = pd.concat([result, temp.iloc[:, 4:]])
 
-        final = pd.concat([final, svs], axis=1)
-
-    return final
+    return result

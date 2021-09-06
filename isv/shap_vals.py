@@ -8,11 +8,12 @@ from isv.scripts.open_model import open_model
 from isv.scripts.constants import HUMAN_READABLE, LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
 
 
-def shap_values_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
+def shap_values_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str, raw: bool = False):
     """Calculate SHAP values for CNVs with the same cnv type
 
     :param annotated_cnvs: Raw counts of genomic elements
     :param cnv_type: type of cnv
+    :param raw: whether raw shap explainer object should be returned
     :return: explainer object
     """
     X, X_train = prepare(annotated_cnvs, cnv_type, return_train=True)
@@ -22,14 +23,19 @@ def shap_values_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
         model,
         X_train,
         model_output='probability')
-
-    return explainer(X).values
+    
+    exp = explainer(X)
+    
+    if raw:
+        return exp
+    else:
+        return exp.values
 
 
 def shap_values(annotated_cnvs: pd.DataFrame):
     """Calculate SHAP values
 
-    :param annotated_cnvs:
+    :param annotated_cnvs: annotated cnvs
     :return: explainer object
     """
     del_ind = np.where(annotated_cnvs.cnv_type == "DEL")[0]
@@ -48,7 +54,7 @@ def shap_values(annotated_cnvs: pd.DataFrame):
         hr_attributes = ['SHAP_' + HUMAN_READABLE[i].replace(' ', '_') for i in attributes]
         sv = shap_values_with_same_cnv_type(annotated_cnvs.iloc[dup_ind], "gain")
         res.append(pd.DataFrame(sv, columns=hr_attributes))
-
+        
     res = pd.concat(res)
     res.index = np.concatenate([del_ind, dup_ind])
     res = res.sort_index()

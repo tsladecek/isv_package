@@ -27,7 +27,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.6, <4',
-    install_requires=["numpy", "xgboost", "pandas", "shap", "sklearn-json", "numba"],
+    install_requires=["numpy>=1.2.0,<2", "xgboost>=1.4.0,<2", "pandas>=1.2.0,<2", "shap>=0.39.0",
+                      "sklearn-json>=0.1.0", "numba>=0.53.0"],
     keywords=['python', 'machine learning', 'copy number variation'],
     license_files="LICENSE.txt",
     classifiers=[  # Optional
