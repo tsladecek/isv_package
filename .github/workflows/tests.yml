@@ -1,7 +1,9 @@
 name: Basic Testing of package functionality
 
-on: push
-
+on:
+  push:
+    tags-ignore:
+      - *
 jobs:
   tests:
     runs-on: ubuntu-latest
