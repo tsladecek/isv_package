@@ -3,31 +3,26 @@
 Python package for easy prediction of pathogenicity Copy Number Variants (CNVs)
 
 ---
-## Requirements
 
-```
-xgboost>=1.4.2
-shap>=0.39.0
-sklearn-json>=0.1.0
-numba>=0.53.1
-numpy>=1.20.3
-pandas>=1.2.4
-numba>=0.53.1
-```
-
-The package might work with older versions, however above specified versions are recommended.
-Make sure to install these packages before installing the `isv` package
-
----
-
-The main function of the package is the function
+##### The package contains a wrapper function:
 ### isv.isv(cnvs, proba, shap)
 which automatically annotates and predicts `cnvs` provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
 
 - The `proba` parameter controls whether probabilities should be calculated
 - The `shap` parameter controls whether shap values should be calculated
 
-And three main subfunction functions:
+#### and a Wrapper class (which is recommended):
+### isv.ISV(cnvs)
+
+with methods:
+- ISV.predict(proba)
+- ISV.shap(data=None)
+  - where the `data` argument is optional
+- ISV.waterfall(cnv_index)
+  - for creating an interactive waterfall plot for a CNV at index `cnv_index`
+
+---
+#### The main subfunctions of the package are:
 
 ### 1. isv.annotate(cnvs)
 - annotates cnvs provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
@@ -40,6 +35,7 @@ And three main subfunction functions:
 - calculates shap values for given CNVs. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
 #### For example
+1. using the simple wrapper
 ```
 from isv import isv
 
@@ -50,6 +46,22 @@ cnvs = [
 ] 
 
 results = isv(cnvs, proba=True, shap=True)
+```
+
+2. using the ISV class
+```
+from isv import ISV
+
+
+cnvs = [
+    ["chr8", 100000, 500000, "DEL"],
+    ["chrX", 52000000, 55000000, "DUP"]
+] 
+
+cnv_isv = ISV(cnvs)
+predictions = cnv_isv.predict(proba=True)
+shap_vals = cnv_isv.shap()
+cnv_isv.waterfall(cnv_index=1)
 ```
 
 ---
