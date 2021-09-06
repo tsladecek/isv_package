@@ -29,14 +29,16 @@ class ISV:
         self.annotated = annotate(cnvs)
         self.cnvs = cnvs
 
-    def predict(self, proba: bool = True):
+    def predict(self, proba: bool = True, threshold: float = 0.95):
         """Generate ISV predictions
 
         :param proba: whether probabilities should be calculated
+        :param threshold: probability threshold for classifying CNVs into three classes: Pathogenic (>= threshold),
+        Uncertain significance ((1-threshold, threshold)) or Benign (<= 1 - threshold)
         :return: dataframe with last column representing the ISV predictions
         """
         res = self.cnvs.copy()
-        res["ISV"] = predict_cnvs(self.annotated, proba)
+        res["ISV"] = predict_cnvs(self.annotated, proba=proba, threshold=threshold)
         return res
 
     def shap(self, df: pd.core.frame.DataFrame = None):
