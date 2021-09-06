@@ -13,6 +13,7 @@ isv_predictions.tsv
 examples/*out*
 isv/data/raw
 
-tests/
+tests/*
+!tests/*_test.py
 
 temp-plot.html
