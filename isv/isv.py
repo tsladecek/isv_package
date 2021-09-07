@@ -53,14 +53,27 @@ class ISV:
         return pd.concat([self.cnvs, sv], axis=1)
 
     def waterfall(self,
-                  cnv_index,
-                  pathogenic_color="rgb(255, 0, 50)",
-                  benign_color="rgb(58, 130, 255)",
-                  text_position='outside',  # 'none' for no text
-                  width=800,
-                  height=800,
+                  cnv_index: int,
+                  filepath: str = "temp-plot.html",
+                  return_fig: bool = False,
+                  pathogenic_color: str = "rgb(255, 0, 50)",
+                  benign_color: str = "rgb(58, 130, 255)",
+                  text_position: str = 'outside',  # 'none' for no text
+                  width: int = 800,
+                  height: int = 800,
                   ):
-        
+        """Waterfall plot for CNV at specified index
+
+        :param cnv_index: CNV which should be plotted
+        :param filepath: Path where resulting html file will be saved
+        :param return_fig: whether raw figure should be returned
+        :param pathogenic_color: color of bars pushing predictions to pathogenic values
+        :param benign_color: color of bars pushing predictions to benign values
+        :param text_position: text position
+        :param width: figure width
+        :param height: figure height
+        :return: html plot
+        """
         cnv_type = ["loss", "gain"][(self.cnvs.iloc[cnv_index:(cnv_index + 1)].cnv_type.item() == "gain") * 1]
         
         sv = shap_values_with_same_cnv_type(self.annotated.iloc[cnv_index:(cnv_index + 1)],
@@ -103,8 +116,8 @@ class ISV:
         for i, temp in enumerate([data, sorted_data, abs_sorted_data]):
             # add value to the left of the name of the feature
             temp["alt_Feature"] = [
-                f'<span style="font-size: 10px; color: gray">({temp.raw.iloc[i]})\
-                </span> = <span style="font-size: 14px;">{temp.Feature.iloc[i]}</span>'
+                f'<span style="font-size: 10px; color: gray">({temp.raw.iloc[i]})</span> = <span style="font-size: ' \
+                f'14px;">{temp.Feature.iloc[i]}</span> '
                 for i in range(len(temp))]
     
             # Main Bar Plot
@@ -174,11 +187,13 @@ class ISV:
                       )
     
         # General Layout
+        chrom, start, end, cnv_type = self.cnvs.iloc[cnv_index].values
         fig.update_layout(
             template='plotly_white',
             # showlegend=True,
             xaxis_title=None,
             yaxis_title=None,
+            title=dict(text=f"{['Deletion', 'Duplication'][cnv_type == 'DUP']} of {chrom}:{start}-{end}"),
             legend=dict(
                 itemclick=False,
                 itemdoubleclick=False,
@@ -202,4 +217,6 @@ class ISV:
             margin=dict(t=20, b=20, l=180, r=0),
         )
 
-        plot(fig)
+        if return_fig:
+            return fig
+        plot(fig, filename=filepath)
