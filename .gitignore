@@ -17,3 +17,5 @@ tests/*
 !tests/*_test.py
 
 temp-plot.html
+
+.pytest_cache

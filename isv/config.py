@@ -1,11 +1,12 @@
 import pathlib
+import os
 
 
 class Settings:
     def __init__(self):
         root_dir = str(pathlib.Path(__file__).parent.absolute())
-        self.model_dir = root_dir + '/models/'
-        self.data_dir = root_dir + '/data/'
+        self.model_dir = os.path.join(root_dir, 'models')
+        self.data_dir = os.path.join(root_dir, 'data')
         self.valid_chromosomes = [f'chr{i}' for i in range(1, 23)] + ['chrX', 'chrY']
         self.chromosome_dict = dict(zip(self.valid_chromosomes, range(1, 25)))
 

@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from sklearn.preprocessing import RobustScaler
 
 from isv.scripts.constants import LOSS_ATTRIBUTES, GAIN_ATTRIBUTES
@@ -21,7 +22,7 @@ def prepare(X, cnv_type, return_train=False):
     else:
         attributes = GAIN_ATTRIBUTES
 
-    train_data_path = settings.data_dir + f'train_{cnv_type}.tsv.gz'
+    train_data_path = os.path.join(settings.data_dir, f'train_{cnv_type}.tsv.gz')
     X_train = pd.read_csv(train_data_path, compression='gzip', sep='\t')
 
     # Train

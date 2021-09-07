@@ -6,6 +6,7 @@ from isv.scripts.open_model import open_model
 
 import numpy as np
 import pandas as pd
+import os
 
 
 def predict_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
@@ -15,7 +16,7 @@ def predict_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
     :param cnv_type: type of cnv
     :return: yhat: predicted values
     """
-    model = open_model(settings.model_dir + f'ISV_{cnv_type}.json')
+    model = open_model(os.path.join(settings.model_dir, f'ISV_{cnv_type}.json'))
     X = prepare(annotated_cnvs, cnv_type)
 
     if isinstance(model, xgb.core.Booster):
@@ -27,7 +28,7 @@ def predict_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
     return yhat
 
 
-def predict(annotated_cnvs: pd.DataFrame, proba: bool = True, threshold=0.95):
+def predict(annotated_cnvs: pd.DataFrame, proba: bool = True, threshold: float = 0.95):
     """Predict bulk of CNVs with different cnv types
 
     :param annotated_cnvs: Annotated CNVs

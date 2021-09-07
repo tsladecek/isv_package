@@ -28,10 +28,10 @@ with methods:
 - annotates cnvs provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
 - Returns an annotated dataframe which can be used as an input to following two functions
 
-### 2. isv.predict(annotated_cnvs, cnv_type, proba)
+### 2. isv.predict(annotated_cnvs, proba)
 - returns an array of isv predictions. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
-### 3. isv.shap_values(annotated_cnvs, cnv_type)
+### 3. isv.shap_values(annotated_cnvs)
 - calculates shap values for given CNVs. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
 #### For example
@@ -65,7 +65,7 @@ cnv_isv.waterfall(cnv_index=1)
 ```
 
 ---
-Can be also used as a command line tool. Make sure to:
+## Can be also used as a command line tool. Make sure to:
 
 #### 1. clone the repository (https://github.com/tsladecek/isv_package)
 #### 2. install requirements, e.g.
@@ -82,7 +82,7 @@ python isv_cmd.py -i <input_cnvs>.bed -o <outputpath> [-p] [-sv]
 ```
 where the input should be a list of CNVs in a bed format, with columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
 
-File where results should be saved (as a tab-separated table)
+Results will be saved in a tab separated file at path specified by user
 
 Optionally, use following flags:
 - **-p**: whether probabilities should be returned

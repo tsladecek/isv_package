@@ -1,6 +1,7 @@
 import shap
 import numpy as np
 import pandas as pd
+import os
 
 from isv.config import settings
 from isv.scripts.prepare_df import prepare
@@ -17,7 +18,7 @@ def shap_values_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str, 
     :return: explainer object
     """
     X, X_train = prepare(annotated_cnvs, cnv_type, return_train=True)
-    model = open_model(settings.model_dir + f'ISV_{cnv_type}.json')
+    model = open_model(os.path.join(settings.model_dir, f'ISV_{cnv_type}.json'))
 
     explainer = shap.TreeExplainer(
         model,
