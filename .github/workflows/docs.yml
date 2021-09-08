@@ -11,14 +11,17 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: gitchecks
       run: |
         git branch --all
         git merge develop
+#    - name: Set up Python
+#      uses: actions/setup-python@v2
+#      with:
+#        python-version: '3.x'
+#    - name: gitchecks
+#      run: |
+#        git branch --all
+#        git merge develop
 #    - name: Install dependencies
 #      run: |
 #        python -m pip install --upgrade pip
