@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
     - run: |
         git branch --all
-        git merge develop
+        git merge origin/develop
 #    - name: Set up Python
 #      uses: actions/setup-python@v2
 #      with:
