@@ -11,34 +11,26 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - run: |
-        git branch --all
-        git merge origin/develop
-#    - name: Set up Python
-#      uses: actions/setup-python@v2
-#      with:
-#        python-version: '3.x'
-#    - name: gitchecks
-#      run: |
-#        git branch --all
-#        git merge develop
-#    - name: Install dependencies
-#      run: |
-#        python -m pip install --upgrade pip
-#        pip install -r requirements.txt
-#        pip install sphinx sphinx_rtd_theme
-#    - name: update repo
-#      run: git merge develop
-#    - name: Update Documentation
-#      run: |
-#        cd sphinx
-#        sphinx-apidoc -f --ext-autodoc -o . ../isv/
-#        make html
-#        cd ..
-#        cp -a sphinx/_build/html/. docs/
-#    - name: push to repo
-#      run: |
-#        git add .
-#        git commit -m 'update documentation'
-#        git push origin gh-pages
+    - run: git merge origin/develop
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install sphinx sphinx_rtd_theme
+    - name: Update Documentation
+      run: |
+        cd sphinx
+        sphinx-apidoc -f --ext-autodoc -o . ../isv/
+        make html
+        cd ..
+        cp -a sphinx/_build/html/. docs/
+    - name: push to repo
+      run: |
+        git add .
+        git commit -m 'ghactions: update documentation'
+        git push
 
