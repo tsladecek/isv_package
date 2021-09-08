@@ -14,6 +14,7 @@ def prepare(X, cnv_type, return_train=False):
     :param cnv_type: type of the cnv == ["loss", "gain"]
     :param X: pandas dataframe
     :param return_train: specify if transformed train data should be returned
+
     :return X: transformed dataframe if return_train is False. else tuple (X, X_train)
     """
 

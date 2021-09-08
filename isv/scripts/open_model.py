@@ -8,6 +8,8 @@ def open_model(model_path):
     """Open and return a model from json file
 
     :param model_path: path to the model
+
+    :return: model
     """
     if model_path.endswith('gz'):
         with gzip.open(model_path, 'r') as f:

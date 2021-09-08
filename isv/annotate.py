@@ -13,7 +13,9 @@ from isv.config import settings
 
 def open_data(f):
     """Open preprocessed data
+
     :param f: filepath
+
     :return: python dictionary of numpy arrays
     """
     with gzip.open(f, 'r') as g:
@@ -30,9 +32,11 @@ def open_data(f):
 @nb.jit(nopython=True)
 def get_el(arr, start: int, end: int):
     """Get overlapped elements
+
     :param arr: array to query
     :param start: start position
     :param end: end position
+
     :return: rows of array overlapped by start, end positions
     """
     return arr[np.where((arr[:, 1] <= end) & (arr[:, 2] >= start))[0]]
@@ -47,8 +51,8 @@ def annotate_cnv(chrom, start, end, gencode_genes, regulatory, hi_genes, hits_re
     :param gencode_genes: preprocessed gencode genes dict
     :param regulatory: preprocessed regulatory genes dict
     :param hi_genes: preprocessed hi_genes genes dict
-    :param hi_regions: preprocessed hi_regions genes dict
-    :param ts_regions: preprocessed ts_regions genes dict
+    :param hits_regions: preprocessed hi_regions and ts regions dict
+
     :return: annotation
     """
     
@@ -84,8 +88,9 @@ def annotate_cnv(chrom, start, end, gencode_genes, regulatory, hi_genes, hits_re
 # %%
 def annotate(cnvs):
     """
-    :param cnvs: a list, np.array or pandas dataframe with 4 columns representing chromosome (eg, chr3),
+    :param cnvs: a list, np.array or pandas dataframe with 4 columns representing chromosome (eg, chr3), \
     cnv start (grch38), cnv end (grch38) and cnv_type (DUP or DEL)
+
     :return: pd DataFrame of annotated CNVs
     """
     if isinstance(cnvs, list) or isinstance(cnvs, np.ndarray):

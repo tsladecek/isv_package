@@ -13,8 +13,9 @@ from plotly.offline import plot
 class ISV:
     """Annotate and Predict pathogenicity of CNVs
 
-    :param cnvs: a list, np.array or pandas dataframe with 4 columns representing chromosome (eg, chr3),
+    :param cnvs: a list, np.array or pandas dataframe with 4 columns representing chromosome (eg, chr3), \
     cnv start (grch38), cnv end (grch38) and cnv_type (DUP or DEL)
+
     :return: ISV output as a pandas dataframe
     """
     def __init__(self, cnvs):
@@ -33,8 +34,9 @@ class ISV:
         """Generate ISV predictions
 
         :param proba: whether probabilities should be calculated
-        :param threshold: probability threshold for classifying CNVs into three classes: Pathogenic (>= threshold),
+        :param threshold: probability threshold for classifying CNVs into three classes: Pathogenic (>= threshold), \
         Uncertain significance ((1-threshold, threshold)) or Benign (<= 1 - threshold)
+
         :return: dataframe with last column representing the ISV predictions
         """
         res = self.cnvs.copy()
@@ -72,6 +74,7 @@ class ISV:
         :param text_position: text position
         :param width: figure width
         :param height: figure height
+
         :return: html plot
         """
         cnv_type = ["loss", "gain"][(self.cnvs.iloc[cnv_index:(cnv_index + 1)].cnv_type.item() == "gain") * 1]

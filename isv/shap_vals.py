@@ -15,6 +15,7 @@ def shap_values_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str, 
     :param annotated_cnvs: Raw counts of genomic elements
     :param cnv_type: type of cnv
     :param raw: whether raw shap explainer object should be returned
+
     :return: explainer object
     """
     X, X_train = prepare(annotated_cnvs, cnv_type, return_train=True)
@@ -37,6 +38,7 @@ def shap_values(annotated_cnvs: pd.DataFrame):
     """Calculate SHAP values
 
     :param annotated_cnvs: annotated cnvs
+
     :return: explainer object
     """
     del_ind = np.where(annotated_cnvs.cnv_type == "DEL")[0]

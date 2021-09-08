@@ -11,9 +11,10 @@ import os
 
 def predict_with_same_cnv_type(annotated_cnvs: pd.DataFrame, cnv_type: str):
     """Return model predictions for a selected dataframe
-`
+
     :param annotated_cnvs: Raw counts of genomic elements
     :param cnv_type: type of cnv
+
     :return: yhat: predicted values
     """
     model = open_model(os.path.join(settings.model_dir, f'ISV_{cnv_type}.json'))
@@ -33,8 +34,9 @@ def predict(annotated_cnvs: pd.DataFrame, proba: bool = True, threshold: float =
 
     :param annotated_cnvs: Annotated CNVs
     :param proba: whether probabilities should be calculated
-    :param threshold: probability threshold for classifying CNVs into three classes: Pathogenic (>= threshold),
+    :param threshold: probability threshold for classifying CNVs into three classes: Pathogenic (>= threshold), \
     Uncertain significance ((1-threshold, threshold)) or Benign (<= 1 - threshold)
+
     :return: predictions
     """
 
