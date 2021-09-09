@@ -51,5 +51,5 @@ jobs:
       with:
         token: ${{ secrets.REPO_GHA_PAT }}
         repository: ${{ github.repository }}
-        event-type: anaconda-publish
+        event-type: pip-published
         client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
