@@ -2,7 +2,7 @@ name: publish_conda
 
 on:
     repository_dispatch:
-      types: [anaconda-publish]
+      types: [pip-published]
 
 jobs:
   publish:
