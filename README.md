@@ -2,6 +2,8 @@
 
 Python package for easy prediction of pathogenicity Copy Number Variants (CNVs)
 
+#### Module reference available at https://tsladecek.github.io/isv_package/
+
 ---
 
 ##### The package contains a wrapper function:
