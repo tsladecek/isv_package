@@ -39,4 +39,4 @@ jobs:
       run: |
         git add .
         git commit -m 'ghactions: update documentation'
-        git push
+        git push origin HEAD:origin/gh-pages
