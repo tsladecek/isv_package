@@ -1,20 +1,27 @@
 # ISV package
 
-Python package for easy prediction of pathogenicity Copy Number Variants (CNVs)
+Python **pip** package for easy prediction of pathogenicity Copy Number Variants (CNVs)
+
+---
+## Install
+#### Install with `pip install isv`
+This will also automatically install all required additional packages. Thus it is recommended to install the package in a separate environment (e.g. virtualenv, conda, ...)
+
+#### Package url: https://pypi.org/project/isv/
 
 #### Module reference available at https://tsladecek.github.io/isv_package/
 
 ---
-
+## Modules
 ##### The package contains a wrapper function:
-### isv.isv(cnvs, proba, shap)
+### `isv.isv(cnvs, proba, shap)`
 which automatically annotates and predicts `cnvs` provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
 
 - The `proba` parameter controls whether probabilities should be calculated
 - The `shap` parameter controls whether shap values should be calculated
 
 #### and a Wrapper class (which is recommended):
-### isv.ISV(cnvs)
+### `isv.ISV(cnvs)`
 
 with methods:
 - ISV.predict(proba)
@@ -26,14 +33,14 @@ with methods:
 ---
 #### The main subfunctions of the package are:
 
-### 1. isv.annotate(cnvs)
+### 1. `isv.annotate(cnvs)`
 - annotates cnvs provided in a list, np.array or pandas DataFrame format represented in 4 columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
 - Returns an annotated dataframe which can be used as an input to following two functions
 
-### 2. isv.predict(annotated_cnvs, proba)
+### 2. `isv.predict(annotated_cnvs, proba)`
 - returns an array of isv predictions. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
-### 3. isv.shap_values(annotated_cnvs)
+### 3. `isv.shap_values(annotated_cnvs)`
 - calculates shap values for given CNVs. `annotated_cnvs` represents annotated cnvs returned by the annotate function
 
 #### For example
