@@ -1,13 +1,13 @@
-from isv.predict import predict as predict_cnvs
-from isv.annotate import annotate
-from isv.shap_vals import shap_values, shap_values_with_same_cnv_type
-from isv.scripts.constants import LOSS_ATTRIBUTES, GAIN_ATTRIBUTES, HUMAN_READABLE, DESCRIPTIONS
-
 import numpy as np
 import pandas as pd
-
 import plotly.graph_objects as go
 from plotly.offline import plot
+
+from isv.annotate import annotate
+from isv.predict import predict as predict_cnvs
+from isv.scripts.constants import LOSS_ATTRIBUTES, GAIN_ATTRIBUTES, HUMAN_READABLE, DESCRIPTIONS
+from isv.scripts.helpers import check_cnvs_obj
+from isv.shap_vals import shap_values, shap_values_with_same_cnv_type
 
 
 class ISV:
@@ -18,12 +18,10 @@ class ISV:
 
     :return: ISV output as a pandas dataframe
     """
+
     def __init__(self, cnvs):
 
-        if isinstance(cnvs, list) or isinstance(cnvs, np.ndarray):
-            cnvs = pd.DataFrame(cnvs)
-        assert isinstance(cnvs, pd.core.frame.DataFrame), "Input should be either list, np.ndarray or pd.DataFrame"
-        assert cnvs.shape[1] == 4, "Input should have 4 columns: chromosome, start (GRCh38), end (GRCh38), cnv_type"
+        cnvs = check_cnvs_obj(cnvs)
 
         cnvs.columns = ["chromosome", "start", "end", "cnv_type"]
 
@@ -50,7 +48,7 @@ class ISV:
         """
         if df is not None:
             return shap_values(df)
-        
+
         sv = shap_values(self.annotated)
         return pd.concat([self.cnvs, sv], axis=1)
 
@@ -78,11 +76,11 @@ class ISV:
         :return: html plot
         """
         cnv_type = ["loss", "gain"][(self.cnvs.iloc[cnv_index:(cnv_index + 1)].cnv_type.item() == "gain") * 1]
-        
+
         sv = shap_values_with_same_cnv_type(self.annotated.iloc[cnv_index:(cnv_index + 1)],
                                             cnv_type,
                                             raw=True)
-        
+
         visibility_dict = {
             'default': [True, False, False],
             'sorted': [False, True, False],
@@ -100,29 +98,29 @@ class ISV:
                              'SHAP': sv.values[0],
                              'raw': self.annotated.loc[:, attributes].iloc[cnv_index].values,
                              'colors': [pathogenic_color if i > 0 else benign_color for i in sv.values[0]]})
-        
+
         data = data.iloc[::-1]
 
         # sort data by SHAP value
         sorted_data = data.iloc[np.argsort(data.SHAP)]
-    
+
         # sort data by absoulte SHAP value
         abs_sorted_data = data.iloc[np.argsort(np.abs(data.SHAP))]
-        
+
         # hover text formating
         hover_text = '{}<br>Value: {:2.3f}'
-    
+
         v = visibility_dict['sorted']  # default visibility
-    
+
         fig = go.Figure()
-    
+
         for i, temp in enumerate([data, sorted_data, abs_sorted_data]):
             # add value to the left of the name of the feature
             temp["alt_Feature"] = [
                 f'<span style="font-size: 10px; color: gray">({temp.raw.iloc[i]})</span> = <span style="font-size: ' \
                 f'14px;">{temp.Feature.iloc[i]}</span> '
                 for i in range(len(temp))]
-    
+
             # Main Bar Plot
             fig.add_trace(
                 go.Waterfall(
@@ -130,7 +128,8 @@ class ISV:
                     y=temp.alt_Feature,
                     base=sv.base_values[0],
                     orientation='h',
-                    hovertext=[hover_text.format(temp.Descriptions.iloc[i], temp.raw.iloc[i]) for i in range(len(temp))],
+                    hovertext=[hover_text.format(temp.Descriptions.iloc[i], temp.raw.iloc[i]) for i in
+                               range(len(temp))],
                     hoverinfo="text + delta + initial",
                     connector={"mode": "between", "line": {"width": 0.2, "color": "gray", "dash": "solid"}},
                     decreasing={
@@ -143,7 +142,7 @@ class ISV:
                     textfont={'color': 'gray'}
                 )
             )
-    
+
         # Buttons
         fig.update_layout(
             updatemenus=[
@@ -180,7 +179,7 @@ class ISV:
                 ),
             ]
         )
-    
+
         fig.add_shape(type='line',
                       x0=sv.base_values[0],
                       y0=0,
@@ -188,7 +187,7 @@ class ISV:
                       y1=len(data),
                       line=dict(color='grey', width=0.3, dash='dash'),
                       )
-    
+
         # General Layout
         chrom, start, end, cnv_type = self.cnvs.iloc[cnv_index].values
         fig.update_layout(
@@ -210,7 +209,7 @@ class ISV:
             height=height,
             xaxis={"showgrid": True,
                    "nticks": 5,
-                   "range": [sv.base_values[0] + np.min(np.cumsum(sv.values[0])) - 0.25,\
+                   "range": [sv.base_values[0] + np.min(np.cumsum(sv.values[0])) - 0.25, \
                              sv.base_values[0] + np.max(np.cumsum(sv.values[0])) + 0.1]},
             hoverlabel=dict(
                 font_size=16,
