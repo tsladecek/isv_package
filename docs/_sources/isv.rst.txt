@@ -12,6 +12,14 @@ Subpackages
 Submodules
 ----------
 
+isv.alternative module
+----------------------
+
+.. automodule:: isv.alternative
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 isv.annotate module
 -------------------
 

@@ -12,6 +12,14 @@ isv.scripts.constants module
    :undoc-members:
    :show-inheritance:
 
+isv.scripts.helpers module
+--------------------------
+
+.. automodule:: isv.scripts.helpers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 isv.scripts.open\_model module
 ------------------------------
 
