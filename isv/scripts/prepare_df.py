@@ -17,10 +17,13 @@ def prepare(X, cnv_type, return_train=False):
 
     :return X: transformed dataframe if return_train is False. else tuple (X, X_train)
     """
-
-    if cnv_type == 'loss':
+    cnv_type = cnv_type.lower()
+    assert cnv_type in ['loss', 'gain', 'del', 'dup'], 'unknown cnv type'
+    if cnv_type in ['loss', 'del']:
+        cnv_type = 'loss'
         attributes = LOSS_ATTRIBUTES
-    else:
+    elif cnv_type in ['gain', 'dup']:
+        cnv_type = 'gain'
         attributes = GAIN_ATTRIBUTES
 
     train_data_path = os.path.join(settings.data_dir, f'train_{cnv_type}.tsv.gz')
