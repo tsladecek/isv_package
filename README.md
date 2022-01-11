@@ -3,6 +3,10 @@
 Python **pip** package for easy prediction of pathogenicity Copy Number Variants (CNVs)
 
 ---
+## If you mention or use the ISV tool, please cite our article
+https://www.nature.com/articles/s41598-021-04505-z
+
+---
 ## Install
 #### Install with `pip install isv`
 This will also automatically install all required additional packages. Thus it is recommended to install the package in a separate environment (e.g. virtualenv, conda, ...)
