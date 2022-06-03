@@ -14,6 +14,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -85,9 +86,9 @@
            <div itemprop="articleBody">
              
   <section id="isv-package">
-<h1>isv package<a class="headerlink" href="#isv-package" title="Permalink to this headline"></a></h1>
+<h1>isv package<a class="headerlink" href="#isv-package" title="Permalink to this heading"></a></h1>
 <section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="isv.scripts.html">isv.scripts package</a><ul>
@@ -103,13 +104,13 @@
 </div>
 </section>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-isv.alternative">
-<span id="isv-alternative-module"></span><h2>isv.alternative module<a class="headerlink" href="#module-isv.alternative" title="Permalink to this headline"></a></h2>
+<span id="isv-alternative-module"></span><h2>isv.alternative module<a class="headerlink" href="#module-isv.alternative" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.alternative.alternative_data">
-<span class="sig-prename descclassname"><span class="pre">isv.alternative.</span></span><span class="sig-name descname"><span class="pre">alternative_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">xgboost.core.DMatrix</span></span></span><a class="headerlink" href="#isv.alternative.alternative_data" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.alternative.</span></span><span class="sig-name descname"><span class="pre">alternative_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DMatrix</span></span></span><a class="headerlink" href="#isv.alternative.alternative_data" title="Permalink to this definition"></a></dt>
 <dd><p>Prepare dataset</p>
 <p>In the first step annotate and scale cnvs in bed format by ISV.
 Then add columns specified in a dictionary or dataframe.</p>
@@ -129,7 +130,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.alternative.alternative_model">
-<span class="sig-prename descclassname"><span class="pre">isv.alternative.</span></span><span class="sig-name descname"><span class="pre">alternative_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_dmat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xgboost.core.DMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dmat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xgboost.core.DMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_boost_round</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_rounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose_eval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.alternative.alternative_model" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.alternative.</span></span><span class="sig-name descname"><span class="pre">alternative_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_dmat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_dmat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_boost_round</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stopping_rounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose_eval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.alternative.alternative_model" title="Permalink to this definition"></a></dt>
 <dd><p>Train a model with alternative</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -150,7 +151,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv.annotate">
-<span id="isv-annotate-module"></span><h2>isv.annotate module<a class="headerlink" href="#module-isv.annotate" title="Permalink to this headline"></a></h2>
+<span id="isv-annotate-module"></span><h2>isv.annotate module<a class="headerlink" href="#module-isv.annotate" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.annotate.annotate">
 <span class="sig-prename descclassname"><span class="pre">isv.annotate.</span></span><span class="sig-name descname"><span class="pre">annotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnvs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.annotate.annotate" title="Permalink to this definition"></a></dt>
@@ -220,7 +221,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv.config">
-<span id="isv-config-module"></span><h2>isv.config module<a class="headerlink" href="#module-isv.config" title="Permalink to this headline"></a></h2>
+<span id="isv-config-module"></span><h2>isv.config module<a class="headerlink" href="#module-isv.config" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="isv.config.Settings">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isv.config.</span></span><span class="sig-name descname"><span class="pre">Settings</span></span><a class="headerlink" href="#isv.config.Settings" title="Permalink to this definition"></a></dt>
@@ -229,7 +230,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv.isv">
-<span id="isv-isv-module"></span><h2>isv.isv module<a class="headerlink" href="#module-isv.isv" title="Permalink to this headline"></a></h2>
+<span id="isv-isv-module"></span><h2>isv.isv module<a class="headerlink" href="#module-isv.isv" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="isv.isv.ISV">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isv.isv.</span></span><span class="sig-name descname"><span class="pre">ISV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnvs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.isv.ISV" title="Permalink to this definition"></a></dt>
@@ -262,7 +263,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="isv.isv.ISV.shap">
-<span class="sig-name descname"><span class="pre">shap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.isv.ISV.shap" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">shap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.isv.ISV.shap" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate SHAP values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -298,10 +299,10 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv.predict">
-<span id="isv-predict-module"></span><h2>isv.predict module<a class="headerlink" href="#module-isv.predict" title="Permalink to this headline"></a></h2>
+<span id="isv-predict-module"></span><h2>isv.predict module<a class="headerlink" href="#module-isv.predict" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.predict.predict">
-<span class="sig-prename descclassname"><span class="pre">isv.predict.</span></span><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proba</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.predict.predict" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.predict.</span></span><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proba</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.predict.predict" title="Permalink to this definition"></a></dt>
 <dd><p>Predict bulk of CNVs with different cnv types</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -319,7 +320,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.predict.predict_with_same_cnv_type">
-<span class="sig-prename descclassname"><span class="pre">isv.predict.</span></span><span class="sig-name descname"><span class="pre">predict_with_same_cnv_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.predict.predict_with_same_cnv_type" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.predict.</span></span><span class="sig-name descname"><span class="pre">predict_with_same_cnv_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.predict.predict_with_same_cnv_type" title="Permalink to this definition"></a></dt>
 <dd><p>Return model predictions for a selected dataframe</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -336,10 +337,10 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv.shap_vals">
-<span id="isv-shap-vals-module"></span><h2>isv.shap_vals module<a class="headerlink" href="#module-isv.shap_vals" title="Permalink to this headline"></a></h2>
+<span id="isv-shap-vals-module"></span><h2>isv.shap_vals module<a class="headerlink" href="#module-isv.shap_vals" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.shap_vals.shap_values">
-<span class="sig-prename descclassname"><span class="pre">isv.shap_vals.</span></span><span class="sig-name descname"><span class="pre">shap_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.shap_vals.shap_values" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.shap_vals.</span></span><span class="sig-name descname"><span class="pre">shap_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.shap_vals.shap_values" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate SHAP values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -353,7 +354,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.shap_vals.shap_values_with_same_cnv_type">
-<span class="sig-prename descclassname"><span class="pre">isv.shap_vals.</span></span><span class="sig-name descname"><span class="pre">shap_values_with_same_cnv_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.shap_vals.shap_values_with_same_cnv_type" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">isv.shap_vals.</span></span><span class="sig-name descname"><span class="pre">shap_values_with_same_cnv_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_cnvs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cnv_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.shap_vals.shap_values_with_same_cnv_type" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate SHAP values for CNVs with the same cnv type</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -371,7 +372,7 @@ Then add columns specified in a dictionary or dataframe.</p>
 
 </section>
 <section id="module-isv">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-isv" title="Permalink to this headline"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-isv" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="isv.isv">
 <span class="sig-prename descclassname"><span class="pre">isv.</span></span><span class="sig-name descname"><span class="pre">isv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnvs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proba</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#isv.isv" title="Permalink to this definition"></a></dt>
