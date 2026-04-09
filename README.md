@@ -1,6 +1,6 @@
 # ISV package
 
-Python **pip** package for easy prediction of pathogenicity Copy Number Variants (CNVs)
+Python package for easy prediction of pathogenicity Copy Number Variants (CNVs)
 
 ---
 ## If you mention or use the ISV tool, please cite our article
@@ -9,7 +9,7 @@ https://www.nature.com/articles/s41598-021-04505-z
 ---
 ## Install
 #### Install with `pip install isv`
-This will also automatically install all required additional packages. Thus it is recommended to install the package in a separate environment (e.g. virtualenv, conda, ...)
+This will also automatically install all required additional packages. Thus it is recommended to install the package in a separate environment (e.g. uv, virtualenv, conda, ...)
 
 #### Package url: https://pypi.org/project/isv/
 
@@ -78,22 +78,15 @@ cnv_isv.waterfall(cnv_index=1)
 ```
 
 ---
-## Can be also used as a command line tool. Make sure to:
-
-#### 1. clone the repository (https://github.com/tsladecek/isv_package)
-#### 2. install requirements, e.g.
+## Can be also used as a command line tool
 
 ```
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-#### 3. Use ISV!
-```
-python isv_cmd.py -i <input_cnvs>.bed -o <outputpath> [-p] [-sv]
+isv -i <input_cnvs>.bed -o <outputpath> [-p] [-sv]
 ```
 where the input should be a list of CNVs in a bed format, with columns: `chromosome`, `start (grch38)`, `end (grch38)` and `cnv_type`
+
+> [!NOTE]
+> The first row must contain column names
 
 Results will be saved in a tab separated file at path specified by user
 
@@ -104,5 +97,5 @@ Optionally, use following flags:
 #### For example
 
 ```
-python isv_cmd.py -i examples/loss_gain_cnvs.bed -o examples/loss_gain_cnvs_out.bed -p -sv
+isv -i examples/loss_gain_cnvs.bed -o examples/loss_gain_cnvs_out.bed -p -sv
 ```
